@@ -28,19 +28,23 @@ class Building
     Building.new(response.parse)
   end
 
-  # def # create action
-    
-  # end
+  def self.create(input_options) # create action
+    response = HTTP.post("http://localhost:3000/api/buildings", 
+                         form: input_options
+                         )
+    Building.new(response.parse)
+  end
 
-  # def # edit
-    
-  # end
+  def update(input_options) # edit
+    response = HTTP.patch(
+                          "http://localhost:3000/api/buildings/#{id}", 
+                          form: input_options
+                          )
 
-  # def # update
-    
-  # end
+    @id = response.parse["id"]
+  end
 
-  # def # destroy
-    
-  # end
+  def destroy # destroy
+    response = HTTP.delete("http://localhost:3000/api/buildings/#{self.id}")
+  end
 end
