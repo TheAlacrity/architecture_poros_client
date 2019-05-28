@@ -2,11 +2,9 @@ class Client::BuildingsController < ApplicationController
 
   def index
     @buildings = Building.all
-    render 'index.html.erb'
   end
 
   def new
-    render 'new.html.erb'
   end
 
   def create
@@ -22,13 +20,10 @@ class Client::BuildingsController < ApplicationController
 
   def show
     @building = Building.find(params[:id])  
-    render 'show.html.erb'
   end
 
   def edit
-    response = HTTP.get("http://localhost:3000/api/buildings/#{params[:id]}")
-    @building = response.parse
-    render "edit.html.erb"
+    @building = Building.find(params[:id])  
   end
 
   def update
